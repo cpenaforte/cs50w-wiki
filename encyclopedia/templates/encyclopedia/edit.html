@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Edit {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h1>Edit {{ title }}</h1>
+
+    {% if error != "" %}
+        <p class="form-error">{{ error }}</p>
+    {% endif %}
+
+    <form action="{% url 'encyclopedia:edit' title=title %}" method="POST" class="d-flex flex-column">
+        {% csrf_token %}
+        <input type="text" value="{{ title }}" disabled>
+        {{ form }}
+        <input type="submit" value="Publish Changes">
+    </form>
+    
+{% endblock %}
